@@ -1,25 +1,36 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{%static 'css/blog.css' %}">
     <title>Blog Django</title>
 </head>
 <body>
-    <header>
-        <h1><a href="/">Blog Django</a></h1>
-    </header>
 
-    <article>
-        <p>Publicado em: </p>
-        <h2><a href="#">Meu primeiro post</a></h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum itaque dicta quia, eligendi delectus nisi veniam saepe a, optio enim obcaecati sint corporis repudiandae odit sequi provident iure cupiditate. Magnam.</p>
-    </article>
+    <div class="page-header">
+        <h1><a href="https://en.wikipedia.org/wiki/Django" class="external_link" id="link_to_wiki_page">Blog Django</a></h1>
+    </div>
 
-    <article>
-        <p>Publicado em: </p>
-        <h2><a href="#">Meu segundo post</a></h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur debitis consequuntur nesciunt est non saepe fuga nam ratione, corporis molestias eius ullam, quia, quisquam ipsam totam quas maxime! Incidunt, iure.</p>
-    </article>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            <p>Publicado em: {{ post.published_date }}</p>
+                        </div>
+                        <h2><a href="">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
